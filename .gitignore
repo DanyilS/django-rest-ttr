@@ -1,6 +1,13 @@
 #poject
 .idea
 *.pyc
+static/admin
+static/css
+static/djng
+static/node_modules
+static/rest_framework
+
+
 
 # Text backup files
 *.bak
