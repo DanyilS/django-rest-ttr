@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'snippets.apps.SnippetsConfig'
+    'snippets.apps.SnippetsConfig',
+    'djng',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,8 @@ ROOT_URLCONF = 'tutorial.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'pages/templates',
+                 BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,9 +123,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = 'static'
+# print(STATIC_ROOT)
+#
+#
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
+)
+#
+# STATICFILES_FINDERS = [
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+# ]
 
+FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'PAGE_SIZE': 5
 }

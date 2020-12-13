@@ -1,0 +1,49 @@
+<div class="content" style="max-width: 1000px; margin: auto; max-height: 500px;">
+    <div class="row mt-5">
+        <div class="col-4">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Номер договора">
+            </div>
+        </div>
+        <div class="col-4">
+            <select class="form-select" ng-model="selectedFiels">
+                <option selected>Тарифы</option>
+
+                <option ng-repeat="v in choices" value="v">v</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <select class="form-select" name="singleSelect" ng-model="data.singleSelect">
+                <option value="option-1">Option 1</option>
+                <option value="option-2">Option 2</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-outline-success mb-2">Success</button>
+    <hr>
+
+
+    <div ng-repeat="snippet in $ctrl.snippets['results']">
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="mx-lg-4">{{ snippet.title }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p style="color: green;">{{ snippet.code }}</p>
+                    </div>
+                    <div class="col-4">
+                        <p>{{ snippet.language }}</p>
+                    </div>
+                    <div class="col-1">
+                        <a href="#!/snippets/{{ snippet.id }}"><i class="fas fa-edit"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
