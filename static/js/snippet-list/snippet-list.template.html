@@ -1,43 +1,80 @@
 <div class="content" style="max-width: 1000px; margin: auto; max-height: 500px;">
-    <div class="row mt-5">
-        <div class="col-4">
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Номер договора">
+    <p class="fs-4 mt-5" style="color: blue;">Список пользователей</p>
+    <form ng-submit="$ctrl.search()">
+        <div class="row mt-2">
+            <div class="col-4">
+                <div class="mb-3">
+                    <input ng-model="$ctrl.snippet.id" type="text" class="form-control" placeholder="Номер договора">
+                </div>
+            </div>
+            <div class="col-4">
+                <select class="form-select" ng-model="$ctrl.snippet.style">
+                    <option value="">Тариф</option>
+                    <option ng-repeat="option in $ctrl.style_choices" ng-value="option.value">  {{option.value}} </option>
+
+                </select>
+            </div>
+            <div class="col-4">
+                <select class="form-select" ng-model="$ctrl.snippet.language">
+                    <option value="" >Состояние</option>
+                    <option ng-repeat="option in $ctrl.tariff_choices" ng-value="option.key">  {{option.key}}  </option>
+                </select>
             </div>
         </div>
-        <div class="col-4">
-            <select class="form-select" ng-model="selectedFiels">
-                <option selected>Тарифы</option>
+        <input class="btn btn-outline-primary mt-1 mb-3" type="submit" value="Поиск">
+    </form>
 
-                <option ng-repeat="v in choices" value="v">v</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-        <div class="col-4">
-            <select class="form-select" name="singleSelect" ng-model="data.singleSelect">
-                <option value="option-1">Option 1</option>
-                <option value="option-2">Option 2</option>
-            </select>
-        </div>
-    </div>
-
-    <button type="button" class="btn btn-outline-success mb-2">Success</button>
     <hr>
+    <!-- Pagination -->
+    <nav aria-label="...">
+        <div class="pagination  mt-2 justify-content-end"  >
+            <div ng-if="$ctrl.snippets.previous != null">
+                <div class="page-item">
+                    <a class="page-link" href="" ng-click="$ctrl.getPreviousLink()">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </a>
+                </div>
+            </div>
 
+            <div ng-if="$ctrl.snippets.previous == null">
+                <div class="page-item disabled">
+                    <a class="page-link" href="" ng-click="$ctrl.getPreviousLink()">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div ng-if="$ctrl.snippets.next != null">
+                <div class="page-item">
+                    <a class="page-link" href="" ng-click="$ctrl.getNextLink()">
+                        <i class="fas fa-arrow-alt-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div ng-if="$ctrl.snippets.next == null">
+                <div class="page-item disabled">
+                    <a class="page-link" href="" ng-click="$ctrl.getNextLink()">
+                        <i class="fas fa-arrow-alt-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- EndPagination -->
 
     <div ng-repeat="snippet in $ctrl.snippets['results']">
         <div class="card mt-2">
             <div class="card-body">
                 <div class="row">
                     <div class="col-4">
-                        <p class="mx-lg-4">{{ snippet.title }}</p>
+                        <p class="mx-lg-4"> {{ snippet.title }}  </p>
                     </div>
                     <div class="col-3">
-                        <p style="color: green;">{{ snippet.code }}</p>
+                        <p style="color: blue;"> {{ snippet.language }} </p>
                     </div>
                     <div class="col-4">
-                        <p>{{ snippet.language }}</p>
+                        <p> {{ snippet.style }}  </p>
                     </div>
                     <div class="col-1">
                         <a href="#!/snippets/{{ snippet.id }}"><i class="fas fa-edit"></i></a>

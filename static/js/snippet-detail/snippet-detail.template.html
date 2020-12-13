@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="content" style="max-width: 1000px; margin: auto; max-height: 500px;">
+    <form ng-submit="$ctrl.changeSnippet()">
 
-</body>
-</html>
+        <p class="fs-4 mt-5" style="color: blue;">Редактирование пользователя</p>
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Фамилия" value="{{$ctrl.snippet['results'][0]['title']}}" >
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Имя" value="{{$ctrl.snippet['results'][0]['code']}}" >
+
+        </div>
+
+        <select class=" mb-3 form-select" aria-label="Default select example" >
+            <option selected>{{$ctrl.snippet['results'][0]['style']}}</option>
+            <option ng-repeat="option in $ctrl.style_choices" ng-value="option.value">  {{option.value}} </option>
+
+        </select>
+
+        <select class="mb-3 form-select" aria-label="Default select example" >
+            <option selected>{{$ctrl.snippet['results'][0]['language']}}</option>
+            <option ng-repeat="option in $ctrl.tariff_choices" ng-value="option.key">  {{option.key}}  </option>
+
+        </select>
+        <input class="btn btn-outline-primary mt-1 mb-3" type="submit" value="Сохранить">
+    </form>
+</div>

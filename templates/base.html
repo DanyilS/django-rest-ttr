@@ -1,21 +1,31 @@
 <!doctype html>
-<html>
+<html ng-app="snippetApp">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <script src="https://kit.fontawesome.com/a493a4fa1b.js" crossorigin="anonymous"></script>
+
     <script src="{% static 'node_modules/angular/angular.js' %}" type="text/javascript" ></script>
     <script src="{% static 'node_modules/angular-route/angular-route.js' %}" type="text/javascript" ></script>
+
     <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
 
+    <script src="{% static 'js/app.module.js' %}"></script>
+    <script src="{% static 'js/app.config.js' %}"></script>
+    <script src="{% static 'js/snippet-list/snippet-list.module.js' %}"></script>
+    <script src="{% static 'js/snippet-list/snippet-list.component.js' %}"></script>
+
+    <script src="{% static 'js/snippet-detail/snippet-detail.module.js' %}"></script>
+    <script src="{% static 'js/snippet-detail/snippet-detail.component.js' %}"></script>
+
+
 </head>
 <body>
-<script>
-    console.log('im here!')
-</script>
-{% block content %}{% endblock content %}
-{% block extra_javascript %} {% endblock extra_javascript %}
+
+<div ng-view></div>
+
 </body>
 </html>

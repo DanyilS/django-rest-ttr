@@ -81,7 +81,7 @@ def api_root(request, format=None):
 
 
 class PartialGroupView(TemplateView):
-    template_name = 'snippets/index.html'
+    template_name = 'base.html'
 
     def get_context_data(self, **kwargs):
         context = super(PartialGroupView, self).get_context_data(**kwargs)
